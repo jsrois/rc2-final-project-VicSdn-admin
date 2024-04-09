@@ -15,7 +15,7 @@ public class Teams {
     private String name_team;
     private String ubication;
     private Integer points;
-    private Integer group;
+    private Integer group_id;
 
     public Teams() {
     }
@@ -52,11 +52,11 @@ public class Teams {
         this.points = points;
     }
 
-    public Integer getGroup() {
-        return group;
+    public Integer getGroup_id() {
+        return group_id;
     }
 
-    public void setGroup(Integer group) {
-        this.group = group;
+    public void setGroup(Integer group_id) {
+        this.group_id = group_id;
     }
 }
