@@ -8,32 +8,32 @@ import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "teams")
-public class Teams {
+public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID_team;
-    private String name_team;
+    private Integer id;
+    private String name;
     private String ubication;
     private Integer points;
-    private Integer group_id;
+    private Integer groupId;
 
-    public Teams() {
+    public Team() {
     }
 
-    public Integer getID_team() {
-        return ID_team;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID_team(Integer ID_team) {
-        this.ID_team = ID_team;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getName_team() {
-        return name_team;
+    public String getName() {
+        return name;
     }
 
-    public void setName_team(String name_team) {
-        this.name_team = name_team;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUbication() {
@@ -52,11 +52,11 @@ public class Teams {
         this.points = points;
     }
 
-    public Integer getGroup_id() {
-        return group_id;
+    public Integer getGroupId() {
+        return groupId;
     }
 
     public void setGroup(Integer group_id) {
-        this.group_id = group_id;
+        this.groupId = group_id;
     }
 }

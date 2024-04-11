@@ -1,6 +1,6 @@
 package org.cangascup.backend.controllers;
 
-import org.cangascup.backend.models.Players;
+import org.cangascup.backend.models.Player;
 import org.cangascup.backend.services.PlayersService;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,26 +30,26 @@ public class PlayersControllerTest {
 
     @Test
     public void testGetAllPlayers() {
-        List<Players> mockPlayers = Arrays.asList(new Players(), new Players());
+        List<Player> mockPlayers = Arrays.asList(new Player(), new Player());
         when(playersService.getAllPlayers()).thenReturn(mockPlayers);
-        List<Players> result = playersController.getAllPlayers();
+        List<Player> result = playersController.getAllPlayers();
         assertEquals(2, result.size());
     }
 
     @Test
     public void testAddPlayer() {
-        Players player = new Players();
+        Player player = new Player();
         when(playersService.addPlayer(player)).thenReturn(player);
-        Players result = playersController.addPlayer(player);
+        Player result = playersController.addPlayer(player);
         assertEquals(player, result);
     }
 
     @Test
     public void testEditPlayer() {
         int id = 1;
-        Players playerDetails = new Players();
+        Player playerDetails = new Player();
         when(playersService.editPlayer(id, playerDetails)).thenReturn(playerDetails);
-        Players result = playersController.editPlayer(id, playerDetails);
+        Player result = playersController.editPlayer(id, playerDetails);
         assertEquals(playerDetails, result);
     }
 
@@ -63,9 +63,9 @@ public class PlayersControllerTest {
     @Test
     public void testSearchPlayersByName() {
         String name = "John";
-        List<Players> mockPlayers = Arrays.asList(new Players(), new Players());
+        List<Player> mockPlayers = Arrays.asList(new Player(), new Player());
         when(playersService.searchPlayersByName(name)).thenReturn(mockPlayers);
-        List<Players> result = playersController.searchPlayersByName(name);
+        List<Player> result = playersController.searchPlayersByName(name);
         assertEquals(2, result.size());
     }
 }

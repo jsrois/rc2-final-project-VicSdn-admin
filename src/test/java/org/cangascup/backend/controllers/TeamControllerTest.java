@@ -1,6 +1,6 @@
 package org.cangascup.backend.controllers;
 
-import org.cangascup.backend.models.Teams;
+import org.cangascup.backend.models.Team;
 import org.cangascup.backend.services.TeamsService;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TeamsControllerTest {
+public class TeamControllerTest {
 
     @Mock
     private TeamsService teamsService;
@@ -35,40 +35,40 @@ public class TeamsControllerTest {
 
     @Test
     public void testGetAllTeams() {
-        List<Teams> mockTeams = Arrays.asList(new Teams(), new Teams());
+        List<Team> mockTeams = Arrays.asList(new Team(), new Team());
         when(teamsService.getAllTeams()).thenReturn(mockTeams);
 
-        List<Teams> result = teamsController.getAllTeams();
+        List<Team> result = teamsController.getAllTeams();
 
         assertEquals(2, result.size());
     }
 
     @Test
     public void testGetTeamsByGroup() {
-        Map<Integer, List<Teams>> mockMap = new HashMap<>();
+        Map<Integer, List<Team>> mockMap = new HashMap<>();
         when(teamsService.getTeamsByGroup_id()).thenReturn(mockMap);
 
-        Map<Integer, List<Teams>> result = teamsController.getTeamsByGroup();
+        Map<Integer, List<Team>> result = teamsController.getTeamsByGroup();
 
         assertEquals(mockMap, result);
     }
 
     @Test
     public void testGetTeamsByLocation() {
-        Map<String, List<Teams>> mockMap = new HashMap<>();
+        Map<String, List<Team>> mockMap = new HashMap<>();
         when(teamsService.getTeamsByLocation()).thenReturn(mockMap);
 
-        Map<String, List<Teams>> result = teamsController.getTeamsByLocation();
+        Map<String, List<Team>> result = teamsController.getTeamsByLocation();
 
         assertEquals(mockMap, result);
     }
 
     @Test
     public void testAddTeam() {
-        Teams team = new Teams();
+        Team team = new Team();
         when(teamsService.addTeam(team)).thenReturn(team);
 
-        ResponseEntity<Teams> responseEntity = teamsController.addTeam(team);
+        ResponseEntity<Team> responseEntity = teamsController.addTeam(team);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(team, responseEntity.getBody());
@@ -83,10 +83,10 @@ public class TeamsControllerTest {
 
     @Test
     public void testUpdateTeam() {
-        Teams team = new Teams();
+        Team team = new Team();
         when(teamsService.updateTeam(1, team)).thenReturn(team);
 
-        ResponseEntity<Teams> responseEntity = teamsController.updateTeam(1, team);
+        ResponseEntity<Team> responseEntity = teamsController.updateTeam(1, team);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(team, responseEntity.getBody());

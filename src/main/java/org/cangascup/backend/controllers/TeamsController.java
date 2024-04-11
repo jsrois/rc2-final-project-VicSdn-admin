@@ -1,6 +1,6 @@
 package org.cangascup.backend.controllers;
 
-import org.cangascup.backend.models.Teams;
+import org.cangascup.backend.models.Team;
 import org.cangascup.backend.services.TeamsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,23 +27,23 @@ public class TeamsController {
     }
 
     @GetMapping
-    public List<Teams> getAllTeams() {
+    public List<Team> getAllTeams() {
         return teamsService.getAllTeams();
     }
 
     @GetMapping("/group")
-    public Map<Integer, List<Teams>> getTeamsByGroup() {
+    public Map<Integer, List<Team>> getTeamsByGroup() {
         return teamsService.getTeamsByGroup_id();
     }
 
     @GetMapping("/ubication")
-    public Map<String, List<Teams>> getTeamsByLocation() {
+    public Map<String, List<Team>> getTeamsByLocation() {
         return teamsService.getTeamsByLocation();
     }
 
     @PostMapping
-    public ResponseEntity<Teams> addTeam(@RequestBody Teams team) {
-        Teams newTeam = teamsService.addTeam(team);
+    public ResponseEntity<Team> addTeam(@RequestBody Team team) {
+        Team newTeam = teamsService.addTeam(team);
         return new ResponseEntity<>(newTeam, HttpStatus.CREATED);
     }
 
@@ -54,8 +54,8 @@ public class TeamsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Teams> updateTeam(@PathVariable Integer id, @RequestBody Teams team) {
-        Teams updatedTeam = teamsService.updateTeam(id, team);
+    public ResponseEntity<Team> updateTeam(@PathVariable Integer id, @RequestBody Team team) {
+        Team updatedTeam = teamsService.updateTeam(id, team);
         return new ResponseEntity<>(updatedTeam, HttpStatus.OK);
     }
 }

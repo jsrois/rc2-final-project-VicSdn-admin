@@ -3,8 +3,8 @@ package org.cangascup.backend.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.cangascup.backend.models.Players;
-import org.cangascup.backend.models.Teams;
+import org.cangascup.backend.models.Player;
+import org.cangascup.backend.models.Team;
 import org.cangascup.backend.repositories.PlayersRepository;
 import org.cangascup.backend.repositories.TeamsRepository;
 import org.springframework.stereotype.Service;
@@ -19,23 +19,23 @@ public class PlayersService {
         this.teamsRepository = teamsRepository;
     }
 
-    public List<Players> getAllPlayers() {
+    public List<Player> getAllPlayers() {
         return playersRepository.findAll();
     }
 
-    public Players addPlayer(Players player) {
+    public Player addPlayer(Player player) {
         validatePlayerTeam(player);
         return playersRepository.save(player);
     }
 
-    public Players editPlayer(Integer id, Players playerDetails) {
-        Players player = playersRepository.findById(id)
+    public Player editPlayer(Integer id, Player playerDetails) {
+        Player player = playersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Jugador no encontrado con ID: " + id));
 
         player.setName(playerDetails.getName());
-        player.setSecond_name(playerDetails.getSecond_name());
+        player.setSecondName(playerDetails.getSecondName());
         player.setDni(playerDetails.getDni());
-        player.setID_team(playerDetails.getID_team());
+        player.setTeamId(playerDetails.getTeamId());
 
         validatePlayerTeam(player);
 
@@ -46,17 +46,17 @@ public class PlayersService {
         playersRepository.deleteById(id);
     }
 
-    public List<Players> searchPlayersByName(String name) {
+    public List<Player> searchPlayersByName(String name) {
         return playersRepository.findByNameContainingIgnoreCase(name);
     }
 
-    private void validatePlayerTeam(Players player) {
-        Integer teamId = player.getID_team();
+    private void validatePlayerTeam(Player player) {
+        Integer teamId = player.getTeamId();
         if (teamId == null) {
             throw new IllegalArgumentException("El jugador debe tener un equipo asociado.");
         }
 
-        Optional<Teams> team = teamsRepository.findById(teamId);
+        Optional<Team> team = teamsRepository.findById(teamId);
         if (!team.isPresent()) {
             throw new IllegalArgumentException("No se encontró un equipo con el ID proporcionado.");
         }

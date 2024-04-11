@@ -2,7 +2,7 @@ package org.cangascup.backend.controllers;
 
 import java.util.List;
 
-import org.cangascup.backend.models.Players;
+import org.cangascup.backend.models.Player;
 import org.cangascup.backend.services.PlayersService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,17 +24,17 @@ public class PlayersController {
     }
 
     @GetMapping
-    public List<Players> getAllPlayers() {
+    public List<Player> getAllPlayers() {
         return playersService.getAllPlayers();
     }
 
     @PostMapping("/add")
-    public Players addPlayer(@RequestBody Players player) {
+    public Player addPlayer(@RequestBody Player player) {
         return playersService.addPlayer(player);
     }
 
     @PutMapping("/edit/{id}")
-    public Players editPlayer(@PathVariable("id") Integer id, @RequestBody Players playerDetails) {
+    public Player editPlayer(@PathVariable("id") Integer id, @RequestBody Player playerDetails) {
         return playersService.editPlayer(id, playerDetails);
     }
 
@@ -44,7 +44,7 @@ public class PlayersController {
     }
 
     @GetMapping("/search")
-    public List<Players> searchPlayersByName(@RequestParam("name") String name) {
+    public List<Player> searchPlayersByName(@RequestParam("name") String name) {
         return playersService.searchPlayersByName(name);
     }
 }
