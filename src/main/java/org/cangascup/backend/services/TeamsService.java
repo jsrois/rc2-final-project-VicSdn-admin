@@ -33,7 +33,6 @@ public class TeamsService {
     }
 
     public Teams addTeam(Teams team) {
-        // Validación de entrada
         if (team == null || team.getName_team() == null || team.getUbication() == null) {
             throw new IllegalArgumentException("Los datos del equipo son inválidos");
         }
@@ -45,7 +44,6 @@ public class TeamsService {
     }
 
     public Teams updateTeam(Integer id, Teams updatedTeam) {
-        // Validación de entrada
         if (updatedTeam == null || updatedTeam.getName_team() == null || updatedTeam.getUbication() == null) {
             throw new IllegalArgumentException("Los datos del equipo actualizado son inválidos");
         }

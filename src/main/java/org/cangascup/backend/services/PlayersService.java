@@ -24,7 +24,7 @@ public class PlayersService {
     }
 
     public Players addPlayer(Players player) {
-        validatePlayerTeam(player); // Validar que el jugador tenga un equipo asociado
+        validatePlayerTeam(player);
         return playersRepository.save(player);
     }
 
@@ -37,7 +37,7 @@ public class PlayersService {
         player.setDni(playerDetails.getDni());
         player.setID_team(playerDetails.getID_team());
 
-        validatePlayerTeam(player); // Validar que el jugador tenga un equipo asociado
+        validatePlayerTeam(player);
 
         return playersRepository.save(player);
     }
@@ -50,7 +50,6 @@ public class PlayersService {
         return playersRepository.findByNameContainingIgnoreCase(name);
     }
 
-    // Método para validar que el jugador tenga un equipo asociado
     private void validatePlayerTeam(Players player) {
         Integer teamId = player.getID_team();
         if (teamId == null) {

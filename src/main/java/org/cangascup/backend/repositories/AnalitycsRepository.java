@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AnalitycsRepository extends JpaRepository<Analitycs, Integer> {
-    // Si necesitas métodos adicionales, los puedes agregar aquí
 }

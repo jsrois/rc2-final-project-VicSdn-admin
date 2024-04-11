@@ -26,7 +26,6 @@ public class AnalitycsService {
         Analitycs analitycs = analitycsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Estadísticas no encontradas con ID: " + id));
 
-        // Actualiza las estadísticas según las necesidades
         analitycs.setGoal(analitycsDetails.getGoal());
         analitycs.setAssist(analitycsDetails.getAssist());
         analitycs.setYellow_card(analitycsDetails.getYellow_card());
